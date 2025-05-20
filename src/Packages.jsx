@@ -21,7 +21,7 @@ const Packages = () => {
 
   const fetchPackages = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/packages", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/packages`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ const Packages = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:3000/api/delete_package/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/delete_package/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

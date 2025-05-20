@@ -7,7 +7,7 @@ const ManageUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/admin/users');
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users`);
       setUsers(res.data);
     } catch (err) {
       setError('Failed to fetch users');
@@ -19,7 +19,7 @@ const ManageUsers = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/admin/users/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (err) {
       setError('Failed to delete user');
@@ -29,7 +29,7 @@ const ManageUsers = () => {
 
   const updateRole = async (id, newRole) => {
     try {
-      await axios.put(`http://localhost:3000/api/admin/users/${id}/role`, { role: newRole });
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}/role`, { role: newRole });
       setUsers(users.map(user => user._id === id ? { ...user, role: newRole } : user));
     } catch (err) {
       setError('Failed to update user role');

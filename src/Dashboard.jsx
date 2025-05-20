@@ -29,7 +29,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchDataForUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${userId}/dashboard`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/${userId}/dashboard`);
         setFormData(res.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to load user data. Please try again.");
@@ -38,7 +38,7 @@ function Dashboard() {
 
     const fetchDataForAdmin = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/admin/dashboard`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/dashboard`);
         setFormData(res.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to load user data. Please try again.");
@@ -55,7 +55,7 @@ function Dashboard() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3000/api/logout", null, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, null, {
         withCredentials: false,
       });
       localStorage.clear();

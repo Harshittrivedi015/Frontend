@@ -11,7 +11,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackage = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/packages/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/packages/${id}`);
         setPkg(response.data.users); // Adjust if the key is different
       } catch (err) {
         setError("Failed to load package details.");

@@ -43,7 +43,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchPackage = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/packages/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/packages/${id}`);
         const data = res.data.users;
         setPackageDetails({
           name: data.name,
@@ -104,7 +104,7 @@ const Booking = () => {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:3000/api/bookings", dataToSubmit);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, dataToSubmit);
       setSuccess("Booking submitted successfully!");
 
       setFormData({

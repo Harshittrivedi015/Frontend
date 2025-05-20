@@ -40,7 +40,7 @@ function AddPackages() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:3000/api/packages/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/packages/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -81,13 +81,13 @@ function AddPackages() {
       let response;
       if (id) {
         response = await axios.put(
-          `http://localhost:3000/api/update_package/${id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/update_package/${id}`,
           formData,
           config
         );
       } else {
         response = await axios.post(
-          "http://localhost:3000/api/add_packages",
+          `${import.meta.env.VITE_BACKEND_URL}/api/add_packages`,
           formData,
           config
         );

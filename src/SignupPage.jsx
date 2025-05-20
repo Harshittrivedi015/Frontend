@@ -25,7 +25,7 @@ function SignupPage() {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('http://localhost:3000/api/signup', formData);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, formData);
       navigate('/EmailVerificationPage', { state: { email: formData.email } });
     } catch (err) {
       if (err.response?.data?.message) {

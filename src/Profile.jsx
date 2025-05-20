@@ -34,7 +34,7 @@ const Profile = ({ userId }) => {
       if (!userId) return;
 
       try {
-        const response = await fetch(`http://localhost:3000/api/user/${userId}`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/${userId}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -71,7 +71,7 @@ const Profile = ({ userId }) => {
         formData.append("profileImage", imageFile); // Append the image file directly
       }
 
-      const response = await fetch(`http://localhost:3000/api/updateProfile/${userData._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/updateProfile/${userData._id}`, {
         method: "PUT",
         body: formData, // Send FormData, not JSON
       });

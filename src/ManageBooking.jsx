@@ -14,7 +14,7 @@ const ManageBooking = () => {
 
   const fetchBookingsForUser = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/bookings/${userId}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/bookings/${userId}`);
       setBookings(res.data);
     } catch (err) {
       setError("Failed to load bookings.");
@@ -23,7 +23,7 @@ const ManageBooking = () => {
 
   const fetchBookingsForAdmin = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/bookings`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`);
       setBookings(res.data);
     } catch (err) {
       setError("Failed to load bookings.");
@@ -39,7 +39,7 @@ const ManageBooking = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`http://localhost:3000/api/bookings/${id}/status`, { status });
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/bookings/${id}/status`, { status });
       setBookings((prev) =>
         prev.map((booking) =>
           booking._id === id ? { ...booking, status } : booking

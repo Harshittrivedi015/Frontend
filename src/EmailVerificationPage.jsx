@@ -31,7 +31,7 @@ function EmailVerificationPage() {
       setMessage('Sending OTP...');
       setError('');
       
-      const res = await axios.post("http://localhost:3000/api/sendotp", { 
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/sendotp`, { 
         email, 
         purpose: 'verification' 
       });
@@ -49,7 +49,7 @@ function EmailVerificationPage() {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/verifyotp", { email, otp });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/verifyotp`, { email, otp });
       alert('Email verified successfully!');
       navigate('/login');
     } catch (err) {
